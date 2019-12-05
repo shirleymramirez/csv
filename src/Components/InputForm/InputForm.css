@@ -1,0 +1,65 @@
+@import "http://fonts.googleapis.com/css?family=Raleway";
+body {
+  margin:0;
+  padding:0;
+  font-family: 'Raleway', sans-serif;
+}
+
+.formField {
+  width: 350px;
+  height: auto;
+  margin: 50px auto 0;
+  padding: 50px;
+  background-color: #eee;
+  color:#333;
+  border: 2px solid #c2d6ff;
+  border-radius: 40px 0 40px 0;
+}
+
+label {
+  font-size: 15px;
+  font-weight: 700;
+}
+
+input#a,
+#b,
+#c,
+#d,
+#e {
+  border: 1px solid #dadada;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  padding-left: 15px;
+  width: 310px;
+  height: 30px;
+  font-size: 14px;
+  box-shadow: 0 0 10px;
+}
+
+span {
+  float: left;
+  margin-top: 8px;
+  font-size: 17px;
+}
+
+textarea {
+  padding-top: 20px;
+  font-weight: 700;
+}
+
+.generateCSV {
+  margin-top: 10px;
+  background-color: #cc7a66;
+  border-radius: 5px;
+  border: none;
+  padding: 10px 25px;
+  color: #fff;
+  text-shadow: 1px 1px 1px #949494;
+  margin-left: 75px;
+}
+
+.generateCSV:hover {
+  background-color: #ff9980;
+}
+
+
