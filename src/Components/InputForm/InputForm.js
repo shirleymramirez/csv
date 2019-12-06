@@ -1,58 +1,43 @@
 import React, { Component } from 'react'
+import { CSVLink } from 'react-csv';
 import './InputForm.css';
 
+const csvHeaders = [
+  { label: "Full Name", key: "fullName"},
+  { label: "Email", key: "email"},
+  { label: "Contact Number", key: "contactNumber" },
+  { label: "Address", key: "address" },
+  { label: "Message", key: "message" }
+];
+
 class InputForm extends Component {
-  state = { 
-    fullName: '',
+  state = {
+    fullName:'',
     email: '',
     contactNumber: '',
-    address:'',
-    message: ''
+    address: '',
+    message: '',
+    csvHeaders: csvHeaders
   }
 
-  onChange = (e) => {
-    this.setState({
-      [e.target.name]: e.target.value
-    })
-  }
-  
-  generateCsv(e) {
+  onChange = (e, indx) => {
     e.preventDefault();
-    var data = [["Full Name", "Email", "Contact Number", "Address", "Message"]];
-    console.log(document.querySelectorAll('.formField > input')[0]);
 
-    let j = document.querySelectorAll('.formField > input');
+    this.setState({
+      [e.target.name]: e.target.value, 
+    })
 
-    console.log(j);
-    console.log(j.label);
-
-
-    j.forEach(function(d,i){
-      console.log(d.value);
-      data.push([d.value]);
-    });
-    console.log(data);
-      
-    let csvContent = "data:text/csv;charset=utf-8,";
-
-    data.forEach(function (d, i) {
-      var dataString = d.join(",");
-      csvContent += i < data.length ? dataString + "\n" : dataString;
-      console.log(csvContent);
-    });
-    console.log(csvContent);
-
-    let encodedUri = encodeURI(csvContent);
-
-    console.log(encodedUri);
-    let link = document.createElement("a");
-    console.log(link);
-    link.setAttribute("href", encodedUri);
-    link.setAttribute("download", "ContactForm.csv");
-    link.click(); 
   }
 
   render() { 
+
+    let object = [{ fullName: this.state.fullName, 
+                  email: this.state.email, 
+                  contactNumber: this.state.contactNumber, 
+                  address: this.state.address,   
+                  message: this.state.message
+                }];
+
     return ( 
       <div>
         <div className="App">
@@ -115,7 +100,17 @@ class InputForm extends Component {
                 value={this.state.message}
                 onChange={e => this.onChange(e)}>
               </input>
-            <button onClick={this.generateCsv} className="generateCSV" id="download">Generate CSV File</button>
+            {/* <button onClick={this.generateCsv} className="generateCSV" id="download">Generate CSV File</button> */}
+            {
+              <CSVLink ar
+                className="generateCSV"
+                data = {object}
+                headers={csvHeaders}
+                filename={"my-file.csv"}
+              >
+                Generate CSV File
+              </CSVLink>
+            }
           </form>
       </div>  
       </div>
